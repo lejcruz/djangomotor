@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+<!-- {% block title %} | Weolcome {% endblock %} -->
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<form method="POST">
+ 
+  {% csrf_token %}
+  <div class="mb-3">
+    
+    <label for="id_name" class="form-label">Nome do Ancora</label>
+    {{form.name}}
+  </div>
+  <div class="mb-3">
+    <label for="id_valor_cpf_cnpj" class="form-label">CPF/CNPJ</label>
+    {{form.valor_cpf_cnpj}}
+  </div>
+  <input type="submit" value="submit">
+  <!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
+</form>
+
+<script type="text/javascript">
+
+$("#id_valor_cpf_cnpj").keydown(function(){
+    try {
+        $("#id_valor_cpf_cnpj").unmask();
+    } catch (e) {}
+
+    var tamanho = $("#id_valor_cpf_cnpj").val().length;
+
+    if(tamanho < 11){
+        $("#id_valor_cpf_cnpj").mask("999.999.999-99");
+    } else {
+        $("#id_valor_cpf_cnpj").mask("99.999.999/9999-99");
+    }
+
+    // ajustando foco
+    var elem = this;
+    setTimeout(function(){
+        // mudo a posição do seletor
+        elem.selectionStart = elem.selectionEnd = 10000;
+    }, 0);
+    // reaplico o valor para mudar o foco
+    var currentValue = $(this).val();
+    $(this).val('');
+    $(this).val(currentValue);
+});
+</script>
+
+{% endblock %}
+
+

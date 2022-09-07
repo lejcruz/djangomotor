@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+<!-- {% block title %} | Weolcome {% endblock %} -->
+
+{% block content %}
+
+<ul>
+    {% for ancora in ancora_list_object %}
+
+        <li> {{ancora.name}} {{ancora.valor_cpf_cnpj}} </li>
+    
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
