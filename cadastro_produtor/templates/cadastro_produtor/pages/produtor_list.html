@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+<!-- {% block title %} | Weolcome {% endblock %} -->
+
+{% block content %}
+
+<ul>
+    {% for produtor in produtor_list_object %}
+
+        <li> {{produtor.name}} {{produtor.valor_cpf_cnpj}} {{produtor.municipio}} {{produtor.estado}} {{produtor.cultura1}} {{produtor.area1}}</li>
+    
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

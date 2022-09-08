@@ -21,5 +21,6 @@ from .views import IndexView
 urlpatterns = [
     path('', IndexView.as_view(), name='home'),
     path('cadastro_ancora/', include('cadastro_ancora.urls')),
+    path('cadastro_produtor/', include('cadastro_produtor.urls')),
     path('admin/', admin.site.urls),
 ]

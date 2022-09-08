@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<!-- {% block title %} | Weolcome {% endblock %} -->
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+  .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+  .b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+  }
+
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+
+  .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
+
+  .nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .final-margin{
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+
+</style>
+
+<form method="POST" class="form-inline">
+ 
+  {% csrf_token %}
+
+  <div class="form-row align-items-center">
+      <div class="form-group"><label for="id_name" class="form-label">Nome do Produtor</label> {{form.name}} </div>
+      <div class="form-group"><label for="id_valor_cpf_cnpj" class="form-label">CPF/CNPJ</label> {{form.valor_cpf_cnpj}} </div>
+      <div class="form-group"><label for="id_municipio" class="form-label">Municipio</label> {{form.municipio}} </div>
+      <div class="form-group"><label for="id_estado" class="form-label">Estado</label> {{form.estado}} </div>
+      
+      <div class="form-group"><label for="id_cultura1" class="form-label">Cultura 1</label> {{form.cultura1}} </div>
+      <div class="form-group"><label for="id_area_1" class="form-label">Area Cultura 1</label> {{form.area_1}} </div>
+
+      <div class="form-group"><label for="id_cultura2" class="form-label">Cultura 2</label> {{form.cultura2}} </div>
+      <div class="form-group"><label for="id_area_2" class="form-label">Area Cultura 2</label> {{form.area_2}} </div>
+
+      <div class="form-group"><button type="submit" class="btn btn-primary final-margin">Enviar</button> </div>
+    
+  </div>
+</form>
+
+<div class="b-example-divider final-margin"></div>
+
+
+<script type="text/javascript">
+
+$("#id_valor_cpf_cnpj").keydown(function(){
+    try {
+        $("#id_valor_cpf_cnpj").unmask();
+    } catch (e) {}
+
+    var tamanho = $("#id_valor_cpf_cnpj").val().length;
+
+    if(tamanho < 11){
+        $("#id_valor_cpf_cnpj").mask("999.999.999-99");
+    } else {
+        $("#id_valor_cpf_cnpj").mask("99.999.999/9999-99");
+    }
+
+    // ajustando foco
+    var elem = this;
+    setTimeout(function(){
+        // mudo a posição do seletor
+        elem.selectionStart = elem.selectionEnd = 10000;
+    }, 0);
+    // reaplico o valor para mudar o foco
+    var currentValue = $(this).val();
+    $(this).val('');
+    $(this).val(currentValue);
+});
+</script>
+
+{% endblock %}
+
+

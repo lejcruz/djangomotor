@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'cadastro_ancora.apps.CadastroAncoraConfig',
+    'cadastro_produtor.apps.CadastroProdutorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
