@@ -23,7 +23,7 @@ class ThankYouView(TemplateView):
 class AncoraCreateView(CreateView):
     model = models.Ancora
     template_name = 'cadastro_ancora/pages/ancora_form.html'
-    fields = "__all__"
+    form_class = forms.CadastroAncoraForm
 
     success_url = reverse_lazy('cadastro_ancora:thank_you')
 

@@ -1,6 +1,14 @@
 from django import forms
+from . import models
 
 
-class CadastroAncoraForm(forms.Form):
-    name = forms.CharField()
-    valor_cpf_cnpj = forms.CharField(max_length=18)
+class CadastroAncoraForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['valor_cpf_cnpj'].widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = models.Ancora
+        fields = "__all__"
