@@ -14,3 +14,11 @@ class CadastroProdutorForm(forms.ModelForm):
     class Meta:
         model = models.Produtor
         fields = "__all__"
+
+
+ProdutorFormSet = forms.modelformset_factory(
+    model=models.Produtor,
+    form=CadastroProdutorForm,
+    fields=("__all__"),
+    extra=1
+)
