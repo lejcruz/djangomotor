@@ -42,5 +42,5 @@ ProdutorCulturaFormSet = forms.modelformset_factory(
     model=models.ProdutorCultura,
     form=CadastroProdutorCulturaForm,
     fields=("__all__"),
-    extra=1
+    extra=2
 )

@@ -85,6 +85,11 @@
   box-shadow: inset 0 .25em 1em rgba(170, 170, 170, 0.1), inset 0 .125em .5em rgba(170, 170, 170, .15);
   border-radius: 0.5em;
   }  
+
+  .addlink {
+    padding-left: 1em;
+    background: url({%  static 'cadastro_produtor/img/icon-addlink.svg' %}) 0 1px no-repeat;
+  }
   
 
 </style>
@@ -113,12 +118,20 @@
   {% endfor %}
 
   {% for form_produtor_cultura in produtor_cultura_formset %}
+    <div class="produtor-cultura-form">
 
       <div class="row">
         <div class="col-sm-6"><label for="id_cultura" class="form-label">Cultura </label> {{form_produtor_cultura.cultura}} </div>
         <div class="col-sm-6"><label for="id_area" class="form-label">Area Cultura </label> {{form_produtor_cultura.area}} </div>
-        
       </div>
+
+    </div>
+
+      <div id="add-cultura-form-div" class="row">
+        <div class="col-sm3" style="margin-top: 1em;"><a id="add-cultura" class="addlink" href="#">Add</a></div>
+      </div>
+
+    
   {% endfor %}
 
 
@@ -142,6 +155,7 @@
 
 <script type="text/javascript">
 
+//Copy main form and replicate when user clicks on 'Add Another' button
 let produtorForm = document.querySelectorAll(".produtor_form")
 let container = document.querySelector("#form-container")
 let addButton = document.querySelector("#add-form")
@@ -164,6 +178,22 @@ function addForm(e) {
     addButtonDiv.parentNode.insertBefore(newForm, addButtonDiv)
 
     totalForms.setAttribute('value', `${formNum+1}`) //Increment the number of total forms in the management form
+}
+
+//Copy and replicate only Cultura and Area Cultura for Each Produtor
+
+let produtorCulturaForm = document.querySelectorAll(".produtor-cultura-form")
+let addCulturaLink = document.querySelector("#add-cultura")
+let addCulturaDiv = document.querySelector("#add-cultura-form-div")
+
+addCulturaLink.addEventListener('click', addCultura)
+
+function addCultura(e) {
+    e.preventDefault()
+
+    let newCultura = produtorCulturaForm[0].cloneNode(true) //Clone the produtor form
+
+    addCulturaDiv.parentNode.insertBefore(newCultura, addCulturaDiv)
 }
 
 

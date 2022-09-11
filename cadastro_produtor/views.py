@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (TemplateView, FormView, 
@@ -33,9 +34,25 @@ class ProdutorAddView(TemplateView):
         # Check if submitted forms are valid
         if all([formset_produtor.is_valid(), formset_produtor_cultura.is_valid()]):
 
-            formset_produtor.save()
-            formset_produtor_cultura.save()
+            parent = formset_produtor.save(commit=False)
+            # parent.save()
+
+            child = formset_produtor_cultura.save(commit=False)
+            child.produtor = parent
+
+            # child.save()
+
+            print("form1: " , formset_produtor.cleaned_data)
+            print("form2: " , formset_produtor_cultura.cleaned_data)
+
             return redirect(reverse_lazy('cadastro_produtor:thank_you_prod'))
+
+        else:
+            parent = formset_produtor.save(commit=False)
+            child = formset_produtor_cultura.save(commit=False)
+            print("Não Deu Certo")
+            print(parent.cleaned_data)
+            print(child.cleaned_data)
 
         return self.render_to_response(
                                         {'produtor_formset': formset_produtor,
