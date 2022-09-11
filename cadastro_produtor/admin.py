@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Produtor
+from . import models
 
 # Register your models here.
-admin.site.register(Produtor)
+admin.site.register(models.Produtor)
+admin.site.register(models.ProdutorCultura)

@@ -15,21 +15,33 @@ class ProdutorAddView(TemplateView):
     # Define method to handle GET request
     def get(self, *args, **kwargs):
         # Create an instance of the formset
-        formset = forms.ProdutorFormSet(queryset=models.Produtor.objects.none())
+        formset_produtor = forms.ProdutorFormSet(queryset=models.Produtor.objects.none())
+        formset_produtor_cultura = forms.ProdutorCulturaFormSet(queryset=models.ProdutorCultura.objects.none())
 
-        return self.render_to_response({'produtor_formset': formset})
+        return self.render_to_response(
+                                        {'produtor_formset': formset_produtor,
+                                         'produtor_cultura_formset': formset_produtor_cultura
+                                         }
+                                      )
 
     # Define method to handle POST request
     def post(self, *args, **kwargs):
 
-        formset = forms.ProdutorFormSet(data=self.request.POST)
+        formset_produtor = forms.ProdutorFormSet(data=self.request.POST)
+        formset_produtor_cultura = forms.ProdutorCulturaFormSet(data=self.request.POST)
 
         # Check if submitted forms are valid
-        if formset.is_valid():
-            formset.save()
+        if all([formset_produtor.is_valid(), formset_produtor_cultura.is_valid()]):
+
+            formset_produtor.save()
+            formset_produtor_cultura.save()
             return redirect(reverse_lazy('cadastro_produtor:thank_you_prod'))
 
-        return self.render_to_response({'produtor_formset': formset})
+        return self.render_to_response(
+                                        {'produtor_formset': formset_produtor,
+                                         'produtor_cultura_formset': formset_produtor_cultura
+                                         }
+                                      )
 
 # class ProdutorCreateView(CreateView):
 #     model = models.Produtor

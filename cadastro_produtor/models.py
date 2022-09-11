@@ -9,8 +9,17 @@ class Produtor(models.Model):
     municipio = models.CharField(max_length=50)
     estado = models.CharField(max_length=2)
 
+
+    def __str__(self):
+        return f'{self.name} - {self.valor_cpf_cnpj} - {self.municipio}/{self.estado}'
+
+
+class ProdutorCultura(models.Model):
+    produtor = models.ForeignKey(Produtor, on_delete=models.CASCADE)
+
     cultura = models.CharField(max_length=30)
     area = models.IntegerField()
 
     def __str__(self):
-        return f'{self.name} - {self.valor_cpf_cnpj} - {self.municipio}/{self.estado}'
+        return f'{self.produtor} - {self.cultura} - {self.area}'
+        

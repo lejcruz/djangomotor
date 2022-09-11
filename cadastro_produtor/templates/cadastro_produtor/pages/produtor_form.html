@@ -97,27 +97,30 @@
   {% csrf_token %}
   {{produtor_formset.management_form}}
 
-  {% for form in produtor_formset %}
+  {% for form_produtor in produtor_formset %}
 
     
     <div class="produtor_form">
     <div class="form-border">
 
       <div class="row">
-        <div class="col-sm-4"> <label for="id_name" class="form-label">Nome do Produtor</label> {{form.name}} </div>  
-        <div class="col-sm-2"><label for="id_valor_cpf_cnpj" class="form-label">CPF/CNPJ</label> {{form.valor_cpf_cnpj}} </div>
-        <div class="col-sm-4"><label for="id_municipio" class="form-label">Municipio</label> {{form.municipio}} </div>
-        <div class="col-sm-2"><label for="id_estado" class="form-label">Estado</label> {{form.estado}} </div>
+        <div class="col-sm-4"> <label for="id_name" class="form-label">Nome do Produtor</label> {{form_produtor.name}} </div>  
+        <div class="col-sm-2"><label for="id_valor_cpf_cnpj" class="form-label">CPF/CNPJ</label> {{form_produtor.valor_cpf_cnpj}} </div>
+        <div class="col-sm-4"><label for="id_municipio" class="form-label">Municipio</label> {{form_produtor.municipio}} </div>
+        <div class="col-sm-2"><label for="id_estado" class="form-label">Estado</label> {{form_produtor.estado}} </div>
         
       </div>
+  {% endfor %}
+
+  {% for form_produtor_cultura in produtor_cultura_formset %}
 
       <div class="row">
-        <div class="col-sm-6"><label for="id_cultura" class="form-label">Cultura </label> {{form.cultura}} </div>
-        <div class="col-sm-6"><label for="id_area_1" class="form-label">Area Cultura </label> {{form.area}} </div>
+        <div class="col-sm-6"><label for="id_cultura" class="form-label">Cultura </label> {{form_produtor_cultura.cultura}} </div>
+        <div class="col-sm-6"><label for="id_area" class="form-label">Area Cultura </label> {{form_produtor_cultura.area}} </div>
         
       </div>
-
   {% endfor %}
+
 
     </div>
     </div>
