@@ -8,7 +8,13 @@
 <ul>
     {% for produtor in produtor_list_object %}
 
-        <li> {{produtor.name}} {{produtor.valor_cpf_cnpj}} {{produtor.municipio}} {{produtor.estado}} {{produtor.cultura}} {{produtor.area}}</li>
+        <li> {{produtor.name}}-{{produtor.valor_cpf_cnpj}}-{{produtor.municipio}}/{{produtor.estado}}//
+            [{{produtor.cultura1}}:{{produtor.area1}}, 
+            {{produtor.cultura2}}:{{produtor.area2}},
+            {{produtor.cultura3}}:{{produtor.area3}},
+            {{produtor.cultura4}}:{{produtor.area4}}
+            ]
+        </li>
     
     {% endfor %}
 

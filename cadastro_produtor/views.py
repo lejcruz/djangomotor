@@ -17,55 +17,24 @@ class ProdutorAddView(TemplateView):
     def get(self, *args, **kwargs):
         # Create an instance of the formset
         formset_produtor = forms.ProdutorFormSet(queryset=models.Produtor.objects.none())
-        formset_produtor_cultura = forms.ProdutorCulturaFormSet(queryset=models.ProdutorCultura.objects.none())
 
-        return self.render_to_response(
-                                        {'produtor_formset': formset_produtor,
-                                         'produtor_cultura_formset': formset_produtor_cultura
-                                         }
-                                      )
+        return self.render_to_response({'produtor_formset': formset_produtor })
 
     # Define method to handle POST request
     def post(self, *args, **kwargs):
 
         formset_produtor = forms.ProdutorFormSet(data=self.request.POST)
-        formset_produtor_cultura = forms.ProdutorCulturaFormSet(data=self.request.POST)
 
         # Check if submitted forms are valid
-        if all([formset_produtor.is_valid(), formset_produtor_cultura.is_valid()]):
+        if formset_produtor.is_valid():
 
-            parent = formset_produtor.save(commit=False)
-            # parent.save()
+            formset_produtor.save()
 
-            child = formset_produtor_cultura.save(commit=False)
-            child.produtor = parent
-
-            # child.save()
-
-            print("form1: " , formset_produtor.cleaned_data)
-            print("form2: " , formset_produtor_cultura.cleaned_data)
+            print("form: ", formset_produtor.cleaned_data)
 
             return redirect(reverse_lazy('cadastro_produtor:thank_you_prod'))
 
-        else:
-            parent = formset_produtor.save(commit=False)
-            child = formset_produtor_cultura.save(commit=False)
-            print("Não Deu Certo")
-            print(parent.cleaned_data)
-            print(child.cleaned_data)
-
-        return self.render_to_response(
-                                        {'produtor_formset': formset_produtor,
-                                         'produtor_cultura_formset': formset_produtor_cultura
-                                         }
-                                      )
-
-# class ProdutorCreateView(CreateView):
-#     model = models.Produtor
-#     template_name = 'cadastro_produtor/pages/produtor_form.html'
-#     form_class = forms.CadastroProdutorForm
-
-#     success_url = reverse_lazy('cadastro_ancora:thank_you')
+        return self.render_to_response({'produtor_formset': formset_produtor} )
 
 
 class ProdutorListView(ListView):
