@@ -8,8 +8,13 @@ class CadastroProdutorForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         for field in self.fields.keys():
-            
-            self.fields[field].widget.attrs['class'] = 'form-control'
+
+            if field == 'cpf_cnpj':
+                self.fields[field].widget.attrs['class'] = 'form-control validador-doc'
+
+            else:
+                self.fields[field].widget.attrs['class'] = 'form-control'
+
 
     class Meta:
         model = models.Produtor

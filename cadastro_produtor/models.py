@@ -27,7 +27,7 @@ ESTADO_CHOICES= [(uf, uf) for uf in ufbr.list_uf]
 
 class Produtor(models.Model):
     name = models.CharField(max_length=30)
-    valor_cpf_cnpj = models.CharField(max_length=18)
+    cpf_cnpj = models.CharField(max_length=18)
     municipio = models.CharField(max_length=50)
     estado = models.CharField(max_length=2, choices=ESTADO_CHOICES, default=None)
 
@@ -46,7 +46,7 @@ class Produtor(models.Model):
 
     def __str__(self):
         return f"""
-        {self.name} - {self.valor_cpf_cnpj} - {self.municipio}/{self.estado} 
+        {self.name} - {self.cpf_cnpj} - {self.municipio}/{self.estado} 
         [{self.cultura1}:{self.area1}, 
         {self.cultura2}:{self.area2},
         {self.cultura3}:{self.area3},

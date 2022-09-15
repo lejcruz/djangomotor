@@ -104,26 +104,26 @@
     <div class="form-border">
 
       <div class="row">
-        <div class="col-sm-4"> <label for="id_name" class="form-label">Nome do Produtor</label> {{form_produtor.name}} </div>  
-        <div class="col-sm-2"><label for="id_valor_cpf_cnpj" class="form-label">CPF/CNPJ</label> {{form_produtor.valor_cpf_cnpj}} </div>
-        <div class="col-sm-4"><label for="id_municipio" class="form-label">Municipio</label> {{form_produtor.municipio}} </div>
-        <div class="col-sm-2"><label for="id_estado" class="form-label">Estado</label> {{form_produtor.estado}} </div>
+        <div class="col-sm-4"> <label for="id_form-0-name" class="form-label">Nome do Produtor</label> {{form_produtor.name}} </div>  
+        <div class="col-sm-2"><label for="id_form-0-cpf_cnpj" class="form-label">CPF/CNPJ</label> {{form_produtor.cpf_cnpj}} </div>
+        <div class="col-sm-4"><label for="id_form-0-municipio" class="form-label">Municipio</label> {{form_produtor.municipio}} </div>
+        <div class="col-sm-2"><label for="id_form-0-estado" class="form-label">Estado</label> {{form_produtor.estado}} </div>
       </div>
 
       <div class="row">
-        <div class="col-sm-4"> <label for="id_cultura1" class="form-label">Cultura 1</label> {{form_produtor.cultura1}} </div>  
-        <div class="col-sm-2"><label for="id_are1" class="form-label">Area 1</label> {{form_produtor.area1}} </div>
+        <div class="col-sm-4"> <label for="id_form-0-cultura1" class="form-label">Cultura 1</label> {{form_produtor.cultura1}} </div>  
+        <div class="col-sm-2"><label for="id_form-0-are1" class="form-label">Area 1</label> {{form_produtor.area1}} </div>
 
-        <div class="col-sm-4"> <label for="id_cultura2" class="form-label">Cultura 2</label> {{form_produtor.cultura2}} </div>  
-        <div class="col-sm-2"><label for="id_valor_area2" class="form-label">Area 2</label> {{form_produtor.area2}} </div>
+        <div class="col-sm-4"> <label for="id_form-0-cultura2" class="form-label">Cultura 2</label> {{form_produtor.cultura2}} </div>  
+        <div class="col-sm-2"><label for="id_form-0-valor_area2" class="form-label">Area 2</label> {{form_produtor.area2}} </div>
       </div>
 
       <div class="row">    
-        <div class="col-sm-4"> <label for="id_cultura3" class="form-label">Cultura 3</label> {{form_produtor.cultura3}} </div>  
-        <div class="col-sm-2"><label for="id_area3" class="form-label">Area 3</label> {{form_produtor.area3}} </div>
+        <div class="col-sm-4"> <label for="id_form-0-cultura3" class="form-label">Cultura 3</label> {{form_produtor.cultura3}} </div>  
+        <div class="col-sm-2"><label for="id_form-0-area3" class="form-label">Area 3</label> {{form_produtor.area3}} </div>
 
-        <div class="col-sm-4"> <label for="id_cultura4" class="form-label">Cultura 4</label> {{form_produtor.cultura4}} </div>  
-        <div class="col-sm-2"><label for="id_area4" class="form-label">Area 4</label> {{form_produtor.area4}} </div>
+        <div class="col-sm-4"> <label for="id_form-0-cultura4" class="form-label">Cultura 4</label> {{form_produtor.cultura4}} </div>  
+        <div class="col-sm-2"><label for="id_form-0-area4" class="form-label">Area 4</label> {{form_produtor.area4}} </div>
       </div>
 
   {% endfor %}
@@ -174,30 +174,31 @@ function addForm(e) {
     totalForms.setAttribute('value', `${formNum+1}`) //Increment the number of total forms in the management form
 }
 
-// $("#id_valor_cpf_cnpj").keydown(function(){
-//     try {
-//         $("#id_valor_cpf_cnpj").unmask();
-//     } catch (e) {}
+$(".validador-doc").keydown(function(){
+    try {
+        $(".validador-doc").unmask();
+    } catch (e) {}
 
-//     var tamanho = $("#id_valor_cpf_cnpj").val().length;
+    var tamanho = $(".validador-doc").val().length;
 
-//     if(tamanho < 11){
-//         $("#id_valor_cpf_cnpj").mask("999.999.999-99");
-//     } else {
-//         $("#id_valor_cpf_cnpj").mask("99.999.999/9999-99");
-//     }
+    if(tamanho < 11){
+        $(".validador-doc").mask("999.999.999-99");
+    } else {
+        $(".validador-doc").mask("99.999.999/9999-99");
+    }
 
-//     // ajustando foco
-//     var elem = this;
-//     setTimeout(function(){
-//         // mudo a posição do seletor
-//         elem.selectionStart = elem.selectionEnd = 10000;
-//     }, 0);
-//     // reaplico o valor para mudar o foco
-//     var currentValue = $(this).val();
-//     $(this).val('');
-//     $(this).val(currentValue);
-// });
+    // ajustando foco
+    var elem = this;
+    setTimeout(function(){
+        // mudo a posição do seletor
+        elem.selectionStart = elem.selectionEnd = 10000;
+    }, 0);
+    // reaplico o valor para mudar o foco
+    var currentValue = $(this).val();
+    $(this).val('');
+    $(this).val(currentValue);
+    }
+);
 </script>
 
 {% endblock %}
