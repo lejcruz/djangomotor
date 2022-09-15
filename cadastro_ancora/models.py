@@ -7,4 +7,4 @@ class Ancora(models.Model):
     cpf_cnpj = models.CharField(max_length=18)
 
     def __str__(self):
-        return f'{self.name} - {self.valor_cpf_cnpj}'
+        return f'{self.name}'

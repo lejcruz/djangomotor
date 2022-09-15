@@ -3,6 +3,8 @@ from django import forms
 from django.core import validators
 from pyUFbr.baseuf import ufbr
 
+from cadastro_ancora import models as ancora_models
+
 
 
 
@@ -26,6 +28,7 @@ ESTADO_CHOICES= [(uf, uf) for uf in ufbr.list_uf]
 # POr enquanto vou deixar sem a opção de escolher a cidade e colocar essa feature depois
 
 class Produtor(models.Model):
+    ancora = models.ForeignKey(ancora_models.Ancora, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=30)
     cpf_cnpj = models.CharField(max_length=18)
     municipio = models.CharField(max_length=50)
